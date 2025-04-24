@@ -1,5 +1,5 @@
 const uuid = require('uuid').v4
-
+const bcrypt = require('bcrypt')
 
 const users = [
     { id: '1', name: 'Jorge', email: 'jorginho@gmail.com', password:'123' },
@@ -18,7 +18,7 @@ module.exports = {
             id: uuid(),
             name,
             email,
-            password
+            password: bcrypt.hashSync(password, 10)
         }
         users.push(newUser)
         return newUser
